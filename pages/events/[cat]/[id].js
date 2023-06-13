@@ -1,11 +1,62 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
+import React, { useRef, useState } from "react";
 
 const EventPage = ({ data }) => {
+  const inputEmail = useRef();
+  const router = useRouter();
+  const [message, setMessage] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const emailValue = inputEmail.current.value;
+    const eventId = router?.query.id;
+
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (!emailValue.match(validRegex)) {
+      setMessage("Please use a valid email address");
+    }
+
+    try {
+      const response = await fetch("/api/email-registration", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: emailValue, eventId: eventId }),
+      });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      setMessage(data.message);
+      inputEmail.current.value = "";
+      console.log("POST", data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
-    <div>
-      <Image src={data.image} width={500} height={300} alt={data.title}></Image>
-      <h1>{data.title}</h1>
-      <p>{data.description}</p>
+    <div className="events-city-event-div">
+      <h1 className="events-city-event-h1">{data.title}</h1>
+      <Image
+        className="events-city-event-img"
+        src={data.image}
+        width={800}
+        height={400}
+        alt={data.title}
+      ></Image>
+      <p className="events-city-event-p">{data.description}</p>
+      <br />
+      <form onSubmit={onSubmit} className="email_registration">
+        <label> Get Registered for this event!</label>
+        <div className="registration-input-and-button-div">
+          <input ref={inputEmail} id="email" placeholder="Please insert your email here" />
+          <button type="submit"> Submit</button>
+        </div>
+      </form>
+      <p>{message}</p>
     </div>
   );
 };

@@ -4,19 +4,23 @@ import Link from "next/link";
 const EventsCatPage = ({ data }) => {
   return (
     <div>
-      <h1>{`Events in ${data[0].city}`}</h1>;
+      <h1>{`Events in ${data[0].city}`}</h1>
       <br />
-      {data.map((ev) => (
-        <Link key={ev.id} href={`/events/${ev.city}/${ev.id}`} passHref>
-          <Image
-            src={ev.image}
-            alt={`${ev.title} image`}
-            width={300}
-            height={300}
-          />
-          <h2>{ev.title}</h2>
-        </Link>
-      ))}
+      <div className="home-body">
+        {data.map((ev) => (
+          <Link
+            className="card-events-city"
+            key={ev.id}
+            href={`/events/${ev.city}/${ev.id}`}
+            passHref
+          >
+            <Image src={ev.image} alt={`${ev.title} image`} width={300} height={300} />
+            <div className="content-events-city">
+              <h2>{ev.title}</h2>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
@@ -44,6 +48,4 @@ export const getStaticProps = async (context) => {
 
   const data = allEvents.filter((ev) => ev.city === id);
   return { props: { data } };
-
-  return { props: {} };
 };

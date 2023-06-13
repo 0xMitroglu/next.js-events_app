@@ -7,7 +7,7 @@ const MainLayout = ({ children }) => {
     <div className="app">
       <div className="app-no-footer">
         <Header />
-        {children}
+        <main>{children}</main>
       </div>
       <Footer />
     </div>

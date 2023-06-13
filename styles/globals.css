@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+/* Reset */
 *,
 *::before,
 *::after {
@@ -14,8 +17,13 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.75rem;
 }
 
+/* Footer always at the bottom */
 .app {
   display: flex;
   flex-direction: column;
@@ -26,22 +34,32 @@ body {
   flex-grow: 1;
 }
 
+/* Links and Fonts */
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Header with Navbar */
 header {
   background: linear-gradient(305deg, #dbfff3, transparent);
   margin-bottom: clamp(3vh, 50px, 5vh);
-  height: 200px;
-}
-
-.header-title {
-  padding-bottom: 50px;
-  width: 90vh;
-  max-width: 500px;
-  margin: 0 auto;
+  height: 300px;
+  width: 100wv;
 }
 
 .navbar {
   display: flex;
+}
+
+.space-between-logo-and-nav-links-navbar {
+  display: flex;
   justify-content: center;
+  margin-right: auto;
+}
+
+.nav-menu {
+  margin-top: 4.7rem;
 }
 
 .nav-link {
@@ -49,18 +67,195 @@ header {
   font-size: 1.4rem;
   text-decoration: none;
   color: black;
-}
-
-#nav-link-img {
-  margin: 0.85rem;
-  font-size: 1rem;
-}
-
-a {
+  margin-top: 4rem;
+  position: relative;
   text-decoration: none;
-  color: black;
+  transition: 0.3s ease;
 }
 
+.nav-link:last-child {
+  margin-right: 5vw;
+}
+
+.nav-link:hover {
+  color: #4f4f4f;
+}
+
+@media (min-width: 700px) {
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    background-color: #4f4f4f;
+    height: 3px;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.nav-link-img {
+  display: flex;
+  margin-top: 3rem;
+  margin-left: 2rem;
+}
+
+.header-title {
+  padding-bottom: 50px;
+  width: 90vw;
+  max-width: 90vw;
+  margin: 0 auto;
+  text-transform: uppercase;
+  margin-top: 5rem;
+}
+
+/* Main and Page */
+main {
+  margin: auto;
+  max-width: 90vw;
+}
+
+.home-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  width: 90vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card:nth-child(even) {
+  direction: rtl;
+}
+
+.card img {
+  margin: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  width: 30%;
+  justify-content: center;
+}
+
+.content p {
+  margin-top: 1rem;
+}
+
+/* Events in city */
+.card-events-city {
+  display: flex;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.content-events-city {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  width: 30%;
+  justify-content: center;
+}
+
+.card-events-city {
+  margin: 1rem;
+}
+
+/* Specific event */
+.events-city-event-h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  text-decoration: underline;
+}
+
+.events-city-event-img {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+}
+
+.events-city-event-p {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 90vw;
+  max-width: 1200px;
+}
+
+/* Email get Registered */
+.registration-input-and-button-div {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.email_registration {
+  margin-top: 25px;
+}
+
+.email_registration label {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 25px;
+}
+.email_registration input {
+  height: 40px;
+  min-width: 350px;
+  box-shadow: none;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+.email_registration button {
+  border-radius: 5px;
+  height: 40px;
+  min-width: 150px;
+  border: 1px solid #5f5a5a;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-left: 10px;
+  font-weight: 600;
+  background: #dcfff3;
+  cursor: pointer;
+}
+
+.email_registration button:hover {
+  color: #dcfff3;
+  background: #333;
+}
+
+/* About Us*/
+.about-us-div {
+  width: 90vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-us-div h1 {
+  margin-bottom: 2rem;
+}
+
+/* Footer */
 footer {
   display: flex;
   background-color: #333;
@@ -68,4 +263,6 @@ footer {
   padding: 10px;
   justify-content: center;
   flex-shrink: 0;
+  padding: 30px;
+  margin-top: 5rem;
 }
